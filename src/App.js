@@ -1,6 +1,3 @@
-import logo from "./logo.svg";
-import "./App.css";
-
 export default function App() {
   return (
     <div className="App">
@@ -20,9 +17,20 @@ function Header() {
   );
 }
 
-function Navigation() {}
+function Logo() {
+  return <span>Logo</span>;
+}
 
-function Logo() {}
+function Navigation() {
+  return (
+    <div>
+      <span>Home</span>
+      <span>How it works</span>
+      <span>Pricing</span>
+      <span>Blog</span>
+    </div>
+  );
+}
 
 function Main() {
   return <main></main>;
