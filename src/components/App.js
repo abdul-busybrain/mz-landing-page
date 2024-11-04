@@ -639,7 +639,7 @@ const Footer = () => {
             </div>
             <div className="mt-8 md:mt-0 md:order-1">
               <p className="text-base text-gray-400">
-                © 2024 MozoAI Inc. All rights reserved.
+                © 2024 Mozo - AI Inc. All rights reserved.
               </p>
             </div>
           </div>
