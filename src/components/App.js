@@ -9,12 +9,22 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useState } from "react";
+import { Link, NavLink, Route, Routes } from "react-router-dom";
 
 export default function App() {
   return (
     <>
-      <Header />
-      <Hero />
+      <>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Hero />} />
+          <Route path="/how" element={<How />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/signup" element={<Signup />} />
+        </Routes>
+      </>
       <Feature />
       <How />
       <Pricing />
@@ -67,36 +77,36 @@ function Header() {
             <nav>
               <ul className="flex flex-col space-y-4">
                 <li>
-                  <a
-                    href="#how"
+                  <NavLink
+                    to="/how"
                     className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                   >
                     How it Works
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#pricing"
+                  <NavLink
+                    to="/pricing"
                     className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                   >
                     Pricing
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#blog"
+                  <NavLink
+                    to="/blog"
                     className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                   >
                     Blog
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#signin"
+                  <NavLink
+                    to="signin"
                     className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                   >
                     Sign in
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
               <div className="mt-4 px-3">
@@ -111,7 +121,11 @@ function Header() {
 }
 
 function Logo() {
-  return <h1 className="text-2xl font-bold text-indigo-600">Mozo</h1>;
+  return (
+    <NavLink to="/" className="text-2xl font-bold text-indigo-600">
+      Mozo
+    </NavLink>
+  );
 }
 
 function Navigation() {
@@ -119,36 +133,36 @@ function Navigation() {
     <nav>
       <ul className="flex items-center space-x-8">
         <li>
-          <a
-            href="#how"
+          <NavLink
+            to="/how"
             className="text-base font-medium text-gray-600 hover:text-gray-900"
           >
             How it Works
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a
-            href="#pricing"
+          <NavLink
+            to="/pricing"
             className="text-base font-medium text-gray-600 hover:text-gray-900"
           >
             Pricing
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a
-            href="#blog"
+          <NavLink
+            to="/blog"
             className="text-base font-medium text-gray-600 hover:text-gray-900"
           >
             Blog
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a
-            href="#signin"
+          <NavLink
+            to="/signin"
             className="text-base font-medium text-gray-600 hover:text-gray-900"
           >
             Sign in
-          </a>
+          </NavLink>
         </li>
       </ul>
     </nav>
@@ -160,30 +174,36 @@ function Hero() {
   return (
     <section className="pt-32 pb-16 px-4 sm:pt-40 sm:pb-24">
       <div className="max-w-7xl mx-auto text-center">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
-          Streamlined <br className="hidden sm:block" /> Communication for{" "}
+        <h1 className="text-5xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
+          Streamlined <br className="hidden sm:block" /> Communication for
           <br className="hidden sm:block" /> Quick Shipping
         </h1>
         <p className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto">
           Mozo is a Web-Based, self hosted team chat sytem.
         </p>
 
-        <Button className="mt-8 px-8 py-3 text-lg">Start free trial</Button>
-        <Button className="mt-8 px-8 py-3 text-lg">Watch Demo</Button>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
+          <Button className=" px-8 py-3 text-lg">Start free trial</Button>
+          <Button variant="secondary" className="px-8 py-3 text-lg">
+            Watch Demo
+          </Button>
+        </div>
       </div>
     </section>
   );
 }
 
 // Features Section
-function Feature({ btnStyle }) {
+function Feature() {
   return (
     <section className="bg-gray-50 py-16 sm:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-gray-900 text-center">
-          Enhance your team's productiity with Mozo
+          Enhance your team's productivity with Mozo
         </h2>
-        <p>Write in threads, focus, and collaborate without video calls.</p>
+        <p className="mt-4 text-lg text-gray-600 text-center max-w-2xl mx-auto">
+          Write in threads, focus, and collaborate without video calls.
+        </p>
 
         {/* KEY FEATURES */}
         <div className="mt-10">
@@ -250,7 +270,11 @@ function Feature({ btnStyle }) {
           </div>
         </div>
 
-        <Button btnStyle={btnStyle}>Start free trial</Button>
+        <div className="mt-12 text-center">
+          <Button className="inline-flex items-center px-6 py-3 border border-transparent text-lg font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition-colors duration-200">
+            Start free trial
+          </Button>
+        </div>
       </div>
     </section>
   );
@@ -391,7 +415,7 @@ function Pricing() {
               <span className="text-4xl font-bold text-gray-900">
                 {plan.price}
               </span>
-              <span className="text-gray-500">month</span>
+              <span className="text-gray-500"> / month</span>
             </p>
           </div>
 
@@ -639,7 +663,7 @@ const Footer = () => {
             </div>
             <div className="mt-8 md:mt-0 md:order-1">
               <p className="text-base text-gray-400">
-                © 2024 Mozo - AI Inc. All rights reserved.
+                © 2024 Mozo AI Inc. All rights reserved.
               </p>
             </div>
           </div>
@@ -649,9 +673,21 @@ const Footer = () => {
   );
 };
 
+function Signin() {
+  return <h1>Sign in page</h1>;
+}
+
+function Blog() {
+  return <h1>Blog page</h1>;
+}
+
+function Signup() {
+  return <h1>Sign up page</h1>;
+}
+
 function Button({ children, variant = "primary", className = "" }) {
   const baseStyles =
-    "px-6 py-2 rounded-md font-medium transition-colors duration-200";
+    " px-6 py-2 rounded-md font-medium transition-colors duration-200";
   const variants = {
     primary: "bg-indigo-600 text-white hover:bg-indigo-700",
     secondary:
