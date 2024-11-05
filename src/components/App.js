@@ -9,7 +9,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useState } from "react";
-import { Link, NavLink, Route, Routes } from "react-router-dom";
+import { NavLink, Route, Routes } from "react-router-dom";
 
 export default function App() {
   return (
@@ -48,7 +48,7 @@ function Header() {
           <div className="block lg:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
@@ -122,45 +122,36 @@ function Header() {
 
 function Logo() {
   return (
-    <NavLink to="/" className="text-2xl font-bold text-indigo-600">
-      Mozo
+    <NavLink to="/" className="text-2xl font-bold text-blue-600">
+      <h1 style={{ fontFamily: "Arial", fontWeight: "bold" }}> mozo</h1>
     </NavLink>
   );
 }
 
 function Navigation() {
+  const navColor =
+    "text-base font-medium text-gray-600 active:text-blue-500 hover:text-blue-600";
+
   return (
     <nav>
       <ul className="flex items-center space-x-8">
         <li>
-          <NavLink
-            to="/how"
-            className="text-base font-medium text-gray-600 hover:text-gray-900"
-          >
+          <NavLink to="/how" className={`${navColor}`}>
             How it Works
           </NavLink>
         </li>
         <li>
-          <NavLink
-            to="/pricing"
-            className="text-base font-medium text-gray-600 hover:text-gray-900"
-          >
+          <NavLink to="/pricing" className={`${navColor}`}>
             Pricing
           </NavLink>
         </li>
         <li>
-          <NavLink
-            to="/blog"
-            className="text-base font-medium text-gray-600 hover:text-gray-900"
-          >
+          <NavLink to="/blog" className={`${navColor}`}>
             Blog
           </NavLink>
         </li>
         <li>
-          <NavLink
-            to="/signin"
-            className="text-base font-medium text-gray-600 hover:text-gray-900"
-          >
+          <NavLink to="/signin" className={`${navColor}`}>
             Sign in
           </NavLink>
         </li>
@@ -172,8 +163,8 @@ function Navigation() {
 // NOTE Hero Section
 function Hero() {
   return (
-    <section className="pt-32 pb-16 px-4 sm:pt-40 sm:pb-24">
-      <div className="max-w-7xl mx-auto text-center">
+    <section className="pt-32 pb-16 px-4 sm:pt-40 sm:pb-24 bg-blue-50">
+      <div className="max-w-7xl mx-auto text-center ">
         <h1 className="text-5xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
           Streamlined <br className="hidden sm:block" /> Communication for
           <br className="hidden sm:block" /> Quick Shipping
@@ -213,7 +204,7 @@ function Feature() {
               <div className="p-6">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
-                    <BarChart className="h-6 w-6 text-indigo-600" />
+                    <BarChart className="h-6 w-6 text-blue-600" />
                   </div>
                   <div className="ml-4">
                     <h3 className="text-lg font-medium text-gray-900">
@@ -233,7 +224,7 @@ function Feature() {
               <div className="p-6">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
-                    <Users className="h-6 w-6 text-indigo-600" />
+                    <Users className="h-6 w-6 text-blue-600" />
                   </div>
                   <div className="ml-4">
                     <h3 className="text-lg font-medium text-gray-900">
@@ -253,7 +244,7 @@ function Feature() {
               <div className="p-6">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
-                    <Calendar className="h-6 w-6 text-indigo-600" />
+                    <Calendar className="h-6 w-6 text-blue-600" />
                   </div>
                   <div className="ml-4">
                     <h3 className="text-lg font-medium text-gray-900">
@@ -271,7 +262,7 @@ function Feature() {
         </div>
 
         <div className="mt-12 text-center">
-          <Button className="inline-flex items-center px-6 py-3 border border-transparent text-lg font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition-colors duration-200">
+          <Button className="inline-flex items-center px-6 py-3 border border-transparent text-lg font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200">
             Start free trial
           </Button>
         </div>
@@ -284,28 +275,28 @@ function Feature() {
 function How() {
   const steps = [
     {
-      icon: <ClipboardCheck className="w-12 h-12 text-indigo-600" />,
+      icon: <ClipboardCheck className="w-12 h-12 text-blue-600" />,
       number: "01",
       title: "Create Your Project",
       description:
         "Set up your project workspace in minutes. Define goals, timelines, and key milestones with our intuitive project setup wizard.",
     },
     {
-      icon: <Users className="w-12 h-12 text-indigo-600" />,
+      icon: <Users className="w-12 h-12 text-blue-600" />,
       number: "02",
       title: "Invite Your Team",
       description:
         "Add team members and assign roles. Our smart collaboration tools ensure everyone knows their responsibilities.",
     },
     {
-      icon: <BarChart className="w-12 h-12 text-indigo-600" />,
+      icon: <BarChart className="w-12 h-12 text-blue-600" />,
       number: "03",
       title: "Track Progress",
       description:
         "Monitor project advancement in real-time with visual dashboards. Get insights on team performance and project status.",
     },
     {
-      icon: <Rocket className="w-12 h-12 text-indigo-600" />,
+      icon: <Rocket className="w-12 h-12 text-blue-600" />,
       number: "04",
       title: "Deliver Results",
       description:
@@ -335,7 +326,7 @@ function How() {
               className="relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
               {/* Step Number */}
-              <div className="absolute -top-4 left-6 bg-indigo-600 text-white text-sm font-bold py-2 px-4 rounded-full">
+              <div className="absolute -top-4 left-6 bg-blue-600 text-white text-sm font-bold py-2 px-4 rounded-full">
                 {step.number}
               </div>
 
@@ -350,7 +341,7 @@ function How() {
 
               {/* Connector Line (hidden on mobile and last item) */}
               {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-1/2 -right-4 w-8 border-t-2 border-dashed border-indigo-300" />
+                <div className="hidden lg:block absolute top-1/2 -right-4 w-8 border-t-2 border-dashed border-blue-300" />
               )}
             </div>
           ))}
@@ -358,9 +349,12 @@ function How() {
 
         {/* CTA Button */}
         <div className="text-center mt-12">
-          <button className="inline-flex items-center px-6 py-3 border border-transparent text-lg font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition-colors duration-200">
+          <Button
+            variant="primary"
+            className="inline-flex items-center px-6 py-3 border border-transparent text-lg font-medium rounded-md  transition-colors duration-200"
+          >
             Start Your Project Now
-          </button>
+          </Button>
         </div>
       </div>
     </section>
@@ -391,65 +385,70 @@ function Pricing() {
   ];
 
   return (
-    <div className=" flex justify-center items-center gap-8 p-8">
-      {plans.map((plan) => (
-        <div
-          key={plan.name}
-          className={`relative flex flex-col p-6 rounded-2xl border ${
-            plan.featured
-              ? "border-indigo-500 shadow-xl transform scale-105 bg-white z-10"
-              : "border-gray-200 bg-white"
-          }`}
-        >
-          {plan.featured && (
-            <div className="absolute -top-5 left-0 ring-0 flex justify-center">
-              <span className="bg-indigo-600 text-white px-4 py-1 rounded-full text-sm">
-                Most Popular
-              </span>
+    <>
+      <h2 className="block text-center text-blue-500 p-8 text-4xl font-bold">
+        Pricing
+      </h2>
+      <div className=" flex justify-center items-center gap-8 p-8">
+        {plans.map((plan) => (
+          <div
+            key={plan.name}
+            className={`relative flex flex-col p-6 rounded-2xl border ${
+              plan.featured
+                ? "border-blue-500 shadow-xl transform scale-105 bg-white z-10"
+                : "border-gray-200 bg-white"
+            }`}
+          >
+            {plan.featured && (
+              <div className="absolute -top-5 left-0 ring-0 flex justify-center">
+                <span className="bg-blue-600 text-white px-4 py-1 rounded-full text-sm">
+                  Most Popular
+                </span>
+              </div>
+            )}
+            <div className="text-center">
+              <h4 className="text-2xl font-bold text-gray-900">{plan.name}</h4>
+              <p className="mt-2 text-gray-500">{plan.description}</p>
+              <p className="mt-4">
+                <span className="text-4xl font-bold text-gray-900">
+                  {plan.price}
+                </span>
+                <span className="text-gray-500"> / month</span>
+              </p>
             </div>
-          )}
-          <div className="text-center">
-            <h4 className="text-2xl font-bold text-gray-900">{plan.name}</h4>
-            <p className="mt-2 text-gray-500">{plan.description}</p>
-            <p className="mt-4">
-              <span className="text-4xl font-bold text-gray-900">
-                {plan.price}
-              </span>
-              <span className="text-gray-500"> / month</span>
-            </p>
-          </div>
 
-          <ul className="mt-6 space-y-4 flex-1">
-            {plan.features.map((feature) => (
-              <li key={feature} className="flex items-start">
-                <svg
-                  className="h-6 w-6 text-green-500 flex-shrink-0"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-                <span className="ml-3 text-gray-500">{feature}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-8">
-            <Button
-              variant={plan.featured ? "primary" : "secondary"}
-              className="w-full"
-            >
-              Get Started
-            </Button>
+            <ul className="mt-6 space-y-4 flex-1">
+              {plan.features.map((feature) => (
+                <li key={feature} className="flex items-start">
+                  <svg
+                    className="h-6 w-6 text-green-500 flex-shrink-0"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span className="ml-3 text-gray-500">{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8">
+              <Button
+                variant={plan.featured ? "primary" : "secondary"}
+                className="w-full"
+              >
+                Get Started
+              </Button>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   );
 }
 
@@ -572,7 +571,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-white border-t border-gray-200">
+    <footer className="bg-gray-50 border-t border-gray-200 ">
       {/* Newsletter Section */}
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-12">
@@ -587,11 +586,15 @@ const Footer = () => {
             <input
               type="email"
               placeholder="example@yahoo.com"
-              className="flex-1 min-w-0 px-4 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-l-md focus:ring-indigo-500 focus:border-indigo-500"
+              className="flex-1 min-w-0 px-4 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-l-md focus:ring-blue-500 focus:border-blue-500"
             />
-            <button className="inline-flex items-center px-6 py-2 border border-transparent text-base font-medium rounded-r-md text-white bg-indigo-600 hover:bg-indigo-700">
+            <Button
+              variant="primary"
+              className="inline-flex items-center px-6 py-2 border border-transparent text-base font-medium  "
+              rounded="rounded-r-md"
+            >
               Subscribe
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -685,13 +688,19 @@ function Signup() {
   return <h1>Sign up page</h1>;
 }
 
-function Button({ children, variant = "primary", className = "" }) {
-  const baseStyles =
-    " px-6 py-2 rounded-md font-medium transition-colors duration-200";
+function Button({
+  children,
+  variant = "primary",
+  rounded = "rounded-md", // New prop for rounded corners
+  className = "",
+}) {
+  const baseStyles = `px-6 py-2 font-medium transition-colors duration-200 ${rounded}`;
+
   const variants = {
-    primary: "bg-indigo-600 text-white hover:bg-indigo-700",
+    primary:
+      "bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700 disabled:bg-blue-200",
     secondary:
-      "bg-white text-indigo-600 hover:bg-gray-50 border border-indigo-600",
+      "bg-white border border-blue-500 text-blue-500 hover:bg-blue-50 active:bg-blue-100",
   };
 
   return (
