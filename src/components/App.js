@@ -10,12 +10,19 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { NavLink, Route, Routes } from "react-router-dom";
+import Dashboard from "./Dashboard";
 
 export default function App() {
+  const [showDashboard, setShowDashboard] = useState(false);
+
+  const handleFreeTrial = () => {
+    setShowDashboard(true);
+  };
+
   return (
     <>
+      <Header />
       <>
-        <Header />
         <Routes>
           <Route path="/" element={<Hero />} />
           <Route path="/how" element={<How />} />
@@ -25,11 +32,18 @@ export default function App() {
           <Route path="/signup" element={<Signup />} />
         </Routes>
       </>
-      <Feature />
-      <How />
-      <Pricing />
-      <FAQ />
-      <Footer />
+
+      {showDashboard ? (
+        <Dashboard />
+      ) : (
+        <>
+          <Feature onFreeTrial={handleFreeTrial} />
+          <Pricing />
+          <How />
+          <FAQ />
+          <Footer />
+        </>
+      )}
     </>
   );
 }
@@ -185,7 +199,7 @@ function Hero() {
 }
 
 // Features Section
-function Feature() {
+function Feature({ onFreeTrial }) {
   return (
     <section className="bg-gray-50 py-16 sm:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -262,7 +276,10 @@ function Feature() {
         </div>
 
         <div className="mt-12 text-center">
-          <Button className="inline-flex items-center px-6 py-3 border border-transparent text-lg font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200">
+          <Button
+            onClick={onFreeTrial}
+            className="inline-flex items-center px-6 py-3 border border-transparent text-lg font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200"
+          >
             Start free trial
           </Button>
         </div>
@@ -693,6 +710,7 @@ function Button({
   variant = "primary",
   rounded = "rounded-md", // New prop for rounded corners
   className = "",
+  onClick,
 }) {
   const baseStyles = `px-6 py-2 font-medium transition-colors duration-200 ${rounded}`;
 
@@ -704,7 +722,10 @@ function Button({
   };
 
   return (
-    <button className={`${baseStyles} ${variants[variant]} ${className}`}>
+    <button
+      onClick={onClick}
+      className={`${baseStyles} ${variants[variant]} ${className}`}
+    >
       {children}
     </button>
   );
