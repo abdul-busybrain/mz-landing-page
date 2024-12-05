@@ -9,6 +9,7 @@ import {
   Menu,
   Search,
 } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
 // Simulated project and task data
 const initialProjects = [
@@ -42,6 +43,16 @@ const initialTasks = [
 ];
 
 const Dashboard = () => {
+  const location = useLocation();
+  const userData = location.state?.userData || {};
+
+  // Destructuring user data with fallbacks
+  const {
+    email = "user@example.com",
+    displayName = "Isa Musa",
+    profileImage = "/api/placeholder/40/40",
+  } = userData;
+
   const [projects] = useState(initialProjects);
   const [tasks] = useState(initialTasks);
 
@@ -51,13 +62,13 @@ const Dashboard = () => {
       <div className="w-64 bg-white border-r p-4">
         <div className="flex items-center mb-8">
           <img
-            src="/api/placeholder/40/40"
+            src={profileImage}
             alt="User Avatar"
             className="w-10 h-10 rounded-full mr-3"
           />
           <div>
-            <div className="font-semibold">John Doe</div>
-            <div className="text-sm text-gray-500">Workspace</div>
+            <div className="font-semibold">{displayName}</div>
+            <div className="text-sm text-gray-500">{email}</div>
           </div>
         </div>
 
@@ -118,7 +129,7 @@ const Dashboard = () => {
             <Bell className="mr-4 text-gray-600" size={20} />
             <CheckSquare className="mr-4 text-gray-600" size={20} />
             <img
-              src="/api/placeholder/40/40"
+              src={profileImage}
               alt="User Avatar"
               className="w-8 h-8 rounded-full"
             />

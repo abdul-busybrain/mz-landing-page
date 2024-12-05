@@ -12,6 +12,7 @@ import Feature from "./Feature";
 import FAQ from "./FAQ";
 import Home from "./Home";
 import AppLayout from "./AppLayout";
+import Dashboard from "./Dashboard";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/account-setup" element={<AccountSetup />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </>
   );
