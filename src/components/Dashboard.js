@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Bell,
   Inbox,
@@ -10,6 +10,7 @@ import {
   Search,
 } from "lucide-react";
 import { useLocation } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 // Simulated project and task data
 const initialProjects = [
@@ -44,14 +45,22 @@ const initialTasks = [
 
 const Dashboard = () => {
   const location = useLocation();
-  const userData = location.state?.userData || {};
+  const { currentUser } = useAuth();
+  const [userData, setUserData] = useState({
+    email: currentUser?.email || "user@example.com",
+    displayName: currentUser?.displayName || "Isa Musa",
+    profileImage: currentUser?.photoUrl || "/api/placeholder/40/40",
+  });
 
-  // Destructuring user data with fallbacks
-  const {
-    email = "user@example.com",
-    displayName = "Isa Musa",
-    profileImage = "/api/placeholder/40/40",
-  } = userData;
+  useEffect(
+    function () {
+      const locationUserData = location.state?.userData;
+      if (locationUserData) {
+        setUserData((prevData) => ({ ...prevData, locationUserData }));
+      }
+    },
+    [location.state]
+  );
 
   const [projects] = useState(initialProjects);
   const [tasks] = useState(initialTasks);
@@ -62,13 +71,13 @@ const Dashboard = () => {
       <div className="w-64 bg-white border-r p-4">
         <div className="flex items-center mb-8">
           <img
-            src={profileImage}
+            src={userData.profileImage}
             alt="User Avatar"
             className="w-10 h-10 rounded-full mr-3"
           />
           <div>
-            <div className="font-semibold">{displayName}</div>
-            <div className="text-sm text-gray-500">{email}</div>
+            <div className="font-semibold">{userData.displayName}</div>
+            <div className="text-sm text-gray-500">{userData.email}</div>
           </div>
         </div>
 
@@ -129,7 +138,7 @@ const Dashboard = () => {
             <Bell className="mr-4 text-gray-600" size={20} />
             <CheckSquare className="mr-4 text-gray-600" size={20} />
             <img
-              src={profileImage}
+              src={userData.profileImage}
               alt="User Avatar"
               className="w-8 h-8 rounded-full"
             />

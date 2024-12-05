@@ -1,15 +1,21 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "./Button";
 import { useState } from "react";
+import { useAuth } from "../contexts/AuthContext";
 
 function AccountSetup() {
   const navigate = useNavigate();
   const location = useLocation();
-  const userInfo = location.state?.userInfo;
+  const { currentUser } = useAuth();
+  const userInfo = location.state?.userInfo || currentUser;
 
   // State for full name and profile image
-  const [fullName, setFullName] = useState(userInfo?.displayName || "");
-  const [profileImage, setProfileImage] = useState(null);
+  const [fullName, setFullName] = useState(
+    userInfo?.displayName || userInfo?.name || ""
+  );
+  const [profileImage, setProfileImage] = useState(
+    userInfo?.photoUrl || userInfo?.profileImage || null
+  );
 
   // Handle image file selection
   const handleImageChange = (e) => {
@@ -25,7 +31,7 @@ function AccountSetup() {
   };
 
   // Handle form submission
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Prepare user data to pass to Dashboard
     const userData = {
       email: userInfo?.email,
@@ -70,8 +76,8 @@ function AccountSetup() {
               </label>
               <input
                 type="text"
-                defaultValue={userInfo?.displayName || ""}
                 value={fullName}
+                defaultValue={userInfo?.displayName || ""}
                 onChange={(e) => setFullName(e.target.value)}
                 required
                 className="border rounded px-2 py-1 w-full"

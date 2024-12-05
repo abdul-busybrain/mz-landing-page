@@ -5,11 +5,12 @@ import { Link, Menu, X } from "lucide-react";
 import { Button } from "./Button";
 import { NavLink } from "react-router-dom";
 import { Logo } from "./Logo";
+import Logout from "../authentication/Logout";
 
 function Header() {
   const { userLoggedIn } = useAuth();
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const handleLogout = Logout();
 
   return (
     <header className="bg-white shadow-sm fixed w-full top-0 z-50">
@@ -37,13 +38,11 @@ function Header() {
           <div className="hidden lg:flex lg:items-center lg:space-x-8">
             <Navigation />
             {userLoggedIn ? (
-              <Link to={"/logout"}>
-                <button>Logout</button>
-              </Link>
+              <Button onClick={handleLogout}>Logout</Button>
             ) : (
-              <Link to={"/register"}>
+              <NavLink to={"/register"}>
                 <Button>Register free</Button>
-              </Link>
+              </NavLink>
             )}
           </div>
         </div>
@@ -59,7 +58,7 @@ function Header() {
               <ul className="flex flex-col space-y-4">
                 <li>
                   <NavLink
-                    to="/how"
+                    to="/#how"
                     className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                   >
                     How it Works
@@ -67,7 +66,7 @@ function Header() {
                 </li>
                 <li>
                   <NavLink
-                    to="/pricing"
+                    to="/#pricing"
                     className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                   >
                     Pricing
@@ -81,18 +80,29 @@ function Header() {
                     Blog
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink
-                    to="Login"
-                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-                  >
-                    Sign in
-                  </NavLink>
-                </li>
+                {!userLoggedIn && (
+                  <li>
+                    <NavLink
+                      to="/login"
+                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                    >
+                      Login
+                    </NavLink>
+                  </li>
+                )}
+                {userLoggedIn && (
+                  <li>
+                    <Button onClick={handleLogout}>Logout</Button>
+                  </li>
+                )}
               </ul>
-              <div className="mt-4 px-3">
-                <Button className="w-full justify-center">Sign up Free</Button>
-              </div>
+              {!userLoggedIn && (
+                <div className="mt-4 px-3">
+                  <Button className="w-full justify-center">
+                    Sign up Free
+                  </Button>
+                </div>
+              )}
             </nav>
           </div>
         </div>
